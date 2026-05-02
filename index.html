@@ -161,6 +161,7 @@
     </main>
 
     <footer class="footer"></footer>
+    <script src="js/musa-data.js"></script>
     <script>
       (function () {
         var tabs = document.querySelectorAll(".nav-tab");
@@ -189,9 +190,22 @@
         });
 
         var form = contact.querySelector(".contact-form");
-        if (form) {
+        if (form && window.MusaData) {
           form.addEventListener("submit", function (e) {
             e.preventDefault();
+            if (!form.checkValidity()) {
+              form.reportValidity();
+              return;
+            }
+            var fd = new FormData(form);
+            MusaData.saveMessage({
+              firstName: String(fd.get("firstName") || "").trim(),
+              lastName: String(fd.get("lastName") || "").trim(),
+              email: String(fd.get("email") || "").trim(),
+              phone: String(fd.get("phone") || "").trim(),
+              message: String(fd.get("message") || "").trim(),
+            });
+            window.location.href = "portal.html#messages";
           });
         }
       })();

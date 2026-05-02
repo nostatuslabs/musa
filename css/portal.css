@@ -1,0 +1,361 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body.portal {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Poppins", system-ui, sans-serif;
+  background: #f4f2ef;
+  color: #1a1a1a;
+  display: flex;
+}
+
+.portal__sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, #1e1e22 0%, #121214 100%);
+  color: #f5f5f5;
+  padding: 1.75rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.08);
+}
+
+.portal__brand {
+  padding: 0 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.portal__brand img {
+  display: block;
+  width: 100%;
+  max-width: 148px;
+  height: auto;
+  max-height: 52px;
+  object-fit: contain;
+  filter: brightness(0) invert(1) drop-shadow(0 2px 10px rgba(0, 0, 0, 0.4));
+}
+
+.portal__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 10px;
+}
+
+.portal__nav-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 12px 14px;
+  border: none;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.72);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.portal__nav-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.portal__nav-btn--active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.portal__main {
+  flex: 1;
+  padding: 2rem clamp(1.25rem, 4vw, 2.5rem);
+  overflow: auto;
+  min-width: 0;
+}
+
+.portal__view-title {
+  font-size: 1.65rem;
+  font-weight: 600;
+  margin: 0 0 0.35rem;
+}
+
+.portal__view-desc {
+  margin: 0 0 1.75rem;
+  font-size: 14px;
+  color: #5c5c5c;
+}
+
+.portal__empty {
+  padding: 2.5rem;
+  text-align: center;
+  background: #fff;
+  border-radius: 14px;
+  border: 1px dashed #ccc;
+  color: #666;
+  font-size: 14px;
+}
+
+.message-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 1.25rem 1.35rem;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.message-card__meta {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+.message-card__name {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.message-card__row {
+  font-size: 13px;
+  color: #444;
+  margin-bottom: 4px;
+}
+
+.message-card__row a {
+  color: #0061ff;
+}
+
+.message-card__body {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #eee;
+  font-size: 14px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+/* Calendar */
+.calendar-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+  margin-bottom: 1.25rem;
+}
+
+.calendar-toolbar label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #555;
+}
+
+.calendar-toolbar select {
+  font: inherit;
+  font-size: 14px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  min-width: 120px;
+  background: #fff;
+}
+
+.calendar-shell {
+  background: #fff;
+  border-radius: 16px;
+  padding: 1.25rem 1.35rem 1.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.07);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  max-width: 720px;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.calendar-grid__dow {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #888;
+  text-align: center;
+  padding: 8px 0;
+}
+
+.calendar-grid__cell {
+  aspect-ratio: 1;
+  max-height: 52px;
+  border: none;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  background: #f5f5f5;
+  color: #333;
+  transition: background 0.15s, color 0.15s;
+}
+
+.calendar-grid__cell:hover:not(:disabled) {
+  background: #eaeaea;
+}
+
+.calendar-grid__cell--muted {
+  color: #bbb;
+  background: #fafafa;
+  cursor: default;
+}
+
+.calendar-grid__cell--selected {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.calendar-grid__cell:disabled {
+  cursor: default;
+  opacity: 0.35;
+}
+
+.booking-panel {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eee;
+  display: grid;
+  gap: 14px;
+  max-width: 360px;
+}
+
+.booking-panel label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #555;
+}
+
+.booking-panel input[type="text"],
+.booking-panel input[type="time"] {
+  font: inherit;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.booking-panel__btn {
+  font: inherit;
+  font-weight: 600;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 10px;
+  background: #1a1a1a;
+  color: #fff;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+.booking-panel__btn:hover {
+  background: #333;
+}
+
+.booking-panel__hint {
+  font-size: 12px;
+  color: #777;
+  margin: 0;
+}
+
+.bookings-list {
+  margin-top: 2rem;
+  max-width: 720px;
+}
+
+.bookings-list h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 12px;
+}
+
+.booking-chip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  background: #fff;
+  border-radius: 12px;
+  margin-bottom: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: 14px;
+}
+
+.booking-chip__remove {
+  flex-shrink: 0;
+  border: none;
+  background: transparent;
+  color: #c00;
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.portal__back {
+  display: inline-block;
+  margin-bottom: 1.25rem;
+  font-size: 13px;
+  color: #0061ff;
+  text-decoration: none;
+}
+
+.portal__back:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  body.portal {
+    flex-direction: column;
+  }
+
+  .portal__sidebar {
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px 14px;
+    gap: 12px;
+  }
+
+  .portal__nav {
+    flex-direction: row;
+    flex: 1;
+    justify-content: flex-end;
+  }
+
+  .portal__nav-btn {
+    width: auto;
+  }
+
+  .portal__brand {
+    padding: 0 4px 0 0;
+    flex-shrink: 0;
+  }
+
+  .portal__brand img {
+    max-width: 120px;
+    max-height: 40px;
+  }
+}
