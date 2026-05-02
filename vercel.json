@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/portal.html",
+      "destination": "/portal",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/portal",
+      "destination": "/portal.html"
+    }
+  ]
+}
