@@ -11,7 +11,38 @@
     />
   </head>
   <body>
-    <header class="header"></header>
+    <header class="header">
+      <nav class="header-nav" aria-label="Main" role="tablist">
+        <button
+          type="button"
+          id="tab-home"
+          class="nav-tab nav-tab--active"
+          data-panel="home"
+          role="tab"
+          aria-selected="true"
+        >
+          <span class="text">Home</span>
+          <span class="blob"></span>
+          <span class="blob"></span>
+          <span class="blob"></span>
+          <span class="blob"></span>
+        </button>
+        <button
+          type="button"
+          id="tab-contact"
+          class="nav-tab"
+          data-panel="contact"
+          role="tab"
+          aria-selected="false"
+        >
+          <span class="text">Contact Us</span>
+          <span class="blob"></span>
+          <span class="blob"></span>
+          <span class="blob"></span>
+          <span class="blob"></span>
+        </button>
+      </nav>
+    </header>
     <ul class="wrapper">
       <li class="icon facebook">
         <a
@@ -85,11 +116,85 @@
     </ul>
 
     <main class="content">
-      <img src="images/Musa_Logo_Lg.png" alt="Image 0" />
-      <div style="height: 6000px"></div>
-      <!-- Added scrollable area -->
+      <div
+        class="content-panel"
+        id="panel-home"
+        role="tabpanel"
+        aria-labelledby="tab-home"
+      >
+        <img src="images/Musa_Logo_Lg.png" alt="MUSA Chocolatier" />
+      </div>
+      <div
+        class="content-panel content-panel--hidden"
+        id="panel-contact"
+        role="tabpanel"
+        aria-labelledby="tab-contact"
+        hidden
+      >
+        <form class="contact-form" action="#" method="post">
+          <h1 class="contact-form__title">Contact Us</h1>
+          <div class="contact-form__row">
+            <label class="contact-form__field">
+              <span class="contact-form__label">First Name</span>
+              <input type="text" name="firstName" autocomplete="given-name" required />
+            </label>
+            <label class="contact-form__field">
+              <span class="contact-form__label">Last Name</span>
+              <input type="text" name="lastName" autocomplete="family-name" required />
+            </label>
+          </div>
+          <label class="contact-form__field">
+            <span class="contact-form__label">Email</span>
+            <input type="email" name="email" autocomplete="email" required />
+          </label>
+          <label class="contact-form__field">
+            <span class="contact-form__label">Phone Number</span>
+            <input type="tel" name="phone" autocomplete="tel" />
+          </label>
+          <label class="contact-form__field">
+            <span class="contact-form__label">Message</span>
+            <textarea name="message" rows="6" required></textarea>
+          </label>
+          <button type="submit" class="contact-form__submit">Send message</button>
+        </form>
+      </div>
     </main>
 
     <footer class="footer"></footer>
+    <script>
+      (function () {
+        var tabs = document.querySelectorAll(".nav-tab");
+        var home = document.getElementById("panel-home");
+        var contact = document.getElementById("panel-contact");
+        if (!tabs.length || !home || !contact) return;
+
+        function setPanel(name) {
+          var isContact = name === "contact";
+          home.classList.toggle("content-panel--hidden", isContact);
+          contact.classList.toggle("content-panel--hidden", !isContact);
+          home.hidden = isContact;
+          contact.hidden = !isContact;
+          tabs.forEach(function (tab) {
+            var active = tab.getAttribute("data-panel") === name;
+            tab.classList.toggle("nav-tab--active", active);
+            tab.setAttribute("aria-selected", active ? "true" : "false");
+          });
+        }
+
+        tabs.forEach(function (tab) {
+          tab.addEventListener("click", function () {
+            var panel = tab.getAttribute("data-panel");
+            if (panel) setPanel(panel);
+          });
+        });
+
+        var form = contact.querySelector(".contact-form");
+        if (form) {
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+          });
+        }
+      })();
+    </script>
   </body>
 </html>
