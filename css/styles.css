@@ -51,41 +51,13 @@ body {
   background-repeat: no-repeat;
 }
 
-#panel-home {
-  position: relative;
-  perspective: 900px;
-}
-
-/* Horizontal spin = full turn around vertical (Y) axis every 2s */
-#panel-home img {
-  position: relative;
-  z-index: 1;
-  filter: drop-shadow(0 6px 28px rgba(0, 0, 0, 0.35));
-  transform-style: preserve-3d;
-  animation: musa-logo-spin-y 2s linear infinite;
-}
-
-@keyframes musa-logo-spin-y {
-  from {
-    transform: rotateY(0deg);
-  }
-  to {
-    transform: rotateY(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  #panel-home img {
-    animation: none;
-  }
-}
-
 .header {
   background-color: white;
   color: black;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  gap: 1rem;
   padding: 10px 20px 10px 20px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   position: fixed;
@@ -100,6 +72,28 @@ body {
   gap: 10px;
   align-items: center;
   font-family: "Poppins", sans-serif;
+}
+
+.header-logo-link {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  line-height: 0;
+  text-decoration: none;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.12));
+}
+
+.header-logo-link:focus-visible {
+  outline: 2px solid #1a1a1a;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.header-logo {
+  display: block;
+  height: 44px;
+  width: auto;
+  object-fit: contain;
 }
 
 /* Glass blob tabs — scoped so other buttons on the page are unchanged */
